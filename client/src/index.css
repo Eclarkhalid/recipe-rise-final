@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-black pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-black max-sm:rounded-full;
+  }
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .info-text {
+    @apply font-satoshi text-black text-lg leading-7;
+  }
+}
+
+/* Tailwind Styles */
+.app {
+  @apply my-20;
+}
+
+.hero {
+  @apply relative flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
+}
+
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center;
+}
+
+.orange_gradient {
+  @apply text-green-500;
+}
+
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl text-center max-w-2xl;
+}
+
+.url_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.submit_btn {
+  @apply hover:border-gray-700 hover:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-700;
+}
+
+.link_card {
+  @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+}
+
+
+
+.blue_gradient {
+  @apply font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
