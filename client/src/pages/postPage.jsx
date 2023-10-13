@@ -51,7 +51,7 @@ export default function PostPage({ updatedAt }) {
   }, [id]);
 
   if (redirect) {
-    return <Navigate to="/post" />;
+    return <Navigate to="/home" />;
   }
 
   if (!postInfo) return null;
@@ -95,8 +95,9 @@ export default function PostPage({ updatedAt }) {
 
   return (
     <div>
-      <section className="single p-5 app">
-        <div className="container-xl">
+      <section className="single p-5 container min-h-screen mx-auto">
+        <div className="app">
+        <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>{postInfo.title}</h1>
           <div className="lg:flex justify-around">
             <div className="content w-full lg:w-2/3 p-3">
               <img
@@ -146,7 +147,7 @@ export default function PostPage({ updatedAt }) {
 
 
               <hr className='my-2' />
-              <h1 className='font-bold max-w-lg my-2 text-text text-3xl'>{postInfo.title}</h1>
+              
               <p className=" font-semibold my-4">
               {postInfo.summary}
               </p>

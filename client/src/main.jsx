@@ -19,7 +19,6 @@ import {
 import Write from './pages/write.jsx'
 import PostPage from './pages/postPage.jsx'
 import EditPost from './pages/editPost.jsx'
-import DeletePost from './pages/deletePost.jsx'
 import Banner from './pages/banner.jsx'
 import Home from './pages/home/home.jsx'
 
@@ -59,10 +58,6 @@ const router = createBrowserRouter([
       {
         path: "/edit/:id",
         element: <EditPost />,
-      },
-      {
-        path: "/delete/:id",
-        element: <DeletePost />,
       },
       {
         path: "/banner",
