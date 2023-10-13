@@ -31,7 +31,7 @@ const GlobalApi = () => {
   }, []);
 
   return (
-    <div className=" min-h-screen my-20 max-container">
+    <div className=" min-h-screen my-20 max-container px-3">
       <header className="w-full flex justify-center items-center flex-col">
         <h1 className="head_text">
           Search For Global&nbsp;
@@ -69,7 +69,7 @@ const GlobalApi = () => {
             </div>
           </form>
         </div>
-        <div className="mt-16 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 sm:gap-4 gap-4">
+        <div className="mt-16 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 sm:gap-4 gap-4 max-sm:bg-background">
           <RecipeList recipes={recipes} />
         </div>
       </div>

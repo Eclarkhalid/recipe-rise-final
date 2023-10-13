@@ -66,10 +66,12 @@ export default function EditPost() {
       </div>
     )}
 
-    <section className="write p-5">
-      <div className="container-xl">
-        <form onSubmit={updatePost} className="lg:flex justify-around gap-28">
-          <div className="content flex flex-col basis-2/3 p-3">
+    <section className="write mt-6 container mx-auto min-h-screen">
+      <div className="app max-sm:px-4">
+        <h1 className='font-bold text-3xl my-2'><span className="text-accent font-bold">Updating</span>, Recipe!</h1>
+        <p className=" text-md leading-6 text-gray-600 ">Change your information to whatever you like.</p>
+        <form onSubmit={updatePost} className="lg:flex justify-around gap-28 mt-6">
+          <div className="content flex flex-col basis-2/3">
             <label htmlFor="title" className='text-xl mb-3'>Title</label>
             <input type="text" className='p-2 bg-gray-200 mb-4 outline-blue-300 rounded' value={title}
               onChange={ev => setTitle(ev.target.value)}
@@ -81,10 +83,10 @@ export default function EditPost() {
               name="recipe-title" id="" required placeholder='Recipe Summary' />
             <div className="editor h-[100%]">
               <label htmlFor="title" className='text-xl my-2'>Description</label>
-              <ReactQuill theme="snow" value={content} onChange={newValue => setContent(newValue)} className='mb-6 h-[300px] overflow-scroll border-gray-500' />
+              <ReactQuill theme="snow" value={content} onChange={newValue => setContent(newValue)} className='mb-6 h-[400px] overflow-scroll border-gray-500 ' />
             </div>
           </div>
-          <div className="menu p-3 basis-1/3">
+          <div className="menu p-3 basis-1/3 bg-background">
             <div className="container-xl">
               <div className="item">
                 <h1 className='text-center text-xl font-medium'>Publish</h1>
@@ -115,7 +117,7 @@ export default function EditPost() {
                 <hr className="my-3" />
                 <div className="flex justify-between flex-col">
                   <div>
-                    <input type="radio" name="cat" value={''} id="cooking" /> &nbsp;
+                    <input type="radio" name="cat" checked value={''} id="cooking" /> &nbsp;
                     <label htmlFor="cooking" className=' gap-6'>Cooking Tips</label>
                   </div>
                   <div>

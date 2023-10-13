@@ -61,13 +61,11 @@ export const reviews = [
   {
     imgURL: customer1,
     customerName: "John Smith",
-    rating: 4.5,
     feedback: "The attention to detail and the quality of the recipes exceeded my expectations. I'm already cooking my way through the cookbook!"
   },
   {
     imgURL: customer2,
     customerName: "Jane Doe",
-    rating: 4.5,
     feedback: "The recipes not only met but exceeded my expectations. I've learned so much about cooking and my family loves the new dishes I'm making."
   },
 ];

@@ -22,7 +22,7 @@ const Register = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-100">
+    <div className="min-h-screen flex items-center justify-center bg-blue-100 max-sm:px-4">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-semibold text-blue-900 my-3">

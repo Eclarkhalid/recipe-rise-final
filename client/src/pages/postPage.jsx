@@ -146,8 +146,11 @@ export default function PostPage({ updatedAt }) {
 
 
               <hr className='my-2' />
-              <h1 className='font-bold max-w-lg my-2'>{postInfo.title}</h1>
-              <p className='leading-8 text-justify' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+              <h1 className='font-bold max-w-lg my-2 text-text text-3xl'>{postInfo.title}</h1>
+              <p className=" font-semibold my-4">
+              {postInfo.summary}
+              </p>
+              <p className='leading-8 text-justify font-medium' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 
               <hr className="my-2" />
               <div className="bg-slate-200 py-6 px-2">

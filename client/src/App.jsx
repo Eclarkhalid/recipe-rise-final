@@ -51,22 +51,25 @@ const App = () => {
             </div>
           </div>
 
-          <div className='relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-gradient-to-b from-green-300 to-secondary bg-cover bg-center'>
+          <div className='relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-gradient-to-b from-green-300 to-orange-50 bg-cover bg-center'>
             <img src={banner} alt="shoe collection" width={610} height={500} className='object-contain relative z-10' />
-            <div className='flex justify-center items-center sm:gap-6 gap-8 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6'>
-              <img src={banner2} alt="shoe collection" width={127} height={103} className="object-contain" fill />
-
-            </div>
           </div>
         </div >
       </section>
+
+      <section className="padding-x  max-container flex justify-center flex-wrap gap-9 bg-background">
+        {services.map((service) => (
+          <ServiceCard key={service.label} {...service} />
+        ))}
+      </section>
+
       <section
         className='padding '
       >
 
         <div className="max-container max-sm:mt-12" id="products">
           <div className="flex flex-col justify-start gap-5">
-            <h2 className='text-4xl font-palanquin'>Our Popular <span className="text-accent">Recipes</span></h2>
+            <h2 className='text-4xl font-palanquin font-bold'>Our Popular <span className="text-accent">Recipes</span></h2>
             <p className=' lg:max-w-lg text-text mt-2 font-satoshi'>
               Explore a world of global flavors with our API-powered recipe search. From Italian pasta to Indian curry, discover diverse culinary delights.
             </p>
@@ -83,9 +86,9 @@ const App = () => {
       <section className="padding flex justify-between items-center max-lg:flex-col gap-10 w-full max-container">
         <div className="flex flex-1 flex-col">
           <h2 className='mt-5 font-satoshi text-4xl capitalize lg:max-w-lg font-bold'>
-            <span className=' xl:bg-white xl:whitespace-nowrap relative z-10 pr-10'>Discover <span className='text-accent inline-block mt-3'>Premium </span>
+            <span className=' xl:bg-white xl:whitespace-nowrap relative z-10 pr-10'>Prepare <span className='text-accent inline-block mt-3'>The Best </span>
               <br />
-              <span className='text-accent inline-block mt-3'>Recipes</span>
+              <span className='text-accent inline-block mt-3'>Meals</span>
             </span>
           </h2>
           <p className='mt-4 lg:max-w-lg info-text'>Explore a world of top-tier cuisine and delicious dishes. Uncover high-quality recipes meticulously crafted to elevate both your culinary skills and taste buds. Discover the latest culinary trends and indulge in unbeatable flavor and presentation. Join the culinary community today.</p>
@@ -99,11 +102,7 @@ const App = () => {
         </div>
       </section>
 
-      <section className="padding-x py-10 max-container flex justify-center flex-wrap gap-9">
-        {services.map((service) => (
-          <ServiceCard key={service.label} {...service} />
-        ))}
-      </section>
+      
 
       <section className='flex justify-between items-center max-xl:flex-col-reverse mb-10 gap-10 max-container'>
         <div className='flex-1'>
@@ -134,7 +133,7 @@ const App = () => {
       </section>
 
 
-      <section className="bg-background padding max-container">
+      <section className="bg-secondary padding max-container">
         <h3 className='font-inter text-center text-4xl font-bold'>
           What Our
           <span className='text-accent'> Users </span>
@@ -152,7 +151,6 @@ const App = () => {
               key={index}
               imgURL={review.imgURL}
               customerName={review.customerName}
-              rating={review.rating}
               feedback={review.feedback}
             />
           ))}

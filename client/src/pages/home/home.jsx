@@ -7,10 +7,10 @@ import Posts from '../../pages/Posts'
 
 const Home = () => {
   return <>
-    <section className="w-full lg:p-8 min-h-screen app">
-      <main className=" md:px-6">
+    <section className="w-full  min-h-screen container mx-auto my-20">
+      <main className="px-6">
       <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Top Recipe</h2>
+          <h2 className="text-2xl font-bold mb-4">Trending Recipe</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <img
@@ -32,6 +32,7 @@ const Home = () => {
             </div>
           </div>
         </section>
+        <h2 className="text-2xl font-bold my-4">All Recipes</h2>
         <hr className="my-2" />
         <Posts />
       </main>
