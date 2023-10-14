@@ -14,8 +14,8 @@ const App = () => {
   return <>
     <main className="relative">
       <section className='xl:padding-l wide-padding-r padding-b my-14'>
-        <div className=" w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container">
-          <div className="relative xl:w-2/5 md:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x">
+        <div className=" w-full flex xl:flex-row md:flex-row flex-col justify-center min-h-screen gap-10 md:gap-2 max-container">
+          <div className="relative xl:w-2/5 md:w-3/5 flex flex-col justify-center items-start w-full max-xl:padding-x">
             <p className='text-xl font-satoshi text-accent my-4'>All Meal Recipes</p>
             <h1 className='mt-4 font-palanquin  text-4xl xl:text-7xl 2xl:text-8xl  max-sm:text-[64px] max-sm:leading-[82px] font-bold text-text z-20 '>
               <span className=' xl:bg-white xl:whitespace-nowrap relative   pr-10'>The Most Recent</span>
@@ -57,7 +57,7 @@ const App = () => {
         </div >
       </section>
 
-      <section className="padding-x  max-container flex justify-center flex-wrap gap-9 bg-background">
+      <section className="padding-x  max-container flex justify-center flex-wrap gap-9 bg-background p-6">
         {services.map((service) => (
           <ServiceCard key={service.label} {...service} />
         ))}
@@ -104,7 +104,7 @@ const App = () => {
 
       
 
-      <section className='flex justify-between items-center max-xl:flex-col-reverse mb-10 gap-10 max-container'>
+      <section className='flex justify-between items-center max-xl:flex-col-reverse mb-10 gap-10 max-container p-6'>
         <div className='flex-1'>
           <img
             src={offer}

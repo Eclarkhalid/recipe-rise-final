@@ -1,0 +1,7 @@
+{
+  "secretKEY" : "asdfe45we45w345wegw345werjktjwertkj",
+  "mongodbURI" : "mongodb+srv://eclarkhalid:machipo@cluster0.9mhktvd.mongodb.net/?retryWrites=true&w=majority",
+  "cloudinary-cloud_name": "recipe-rise",
+  "clodinary-api_key" : "887651317989421",
+  "cloudinary-api_secret" : "jDEuiOVC7eclQ5rmfA8LmEc4zwo"
+}

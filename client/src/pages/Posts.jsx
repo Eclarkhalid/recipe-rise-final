@@ -10,7 +10,7 @@ export default function PostPage() {
   const [selectedAuthor, setSelectedAuthor] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/post")
+    fetch("https://recipe-rise-final-api-full.onrender.com/post")
       .then((response) => response.json())
       .then((data) => {
         setPosts(data);

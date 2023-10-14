@@ -15,7 +15,7 @@ const ProfileCard = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/profile', { withCredentials: true })
+    axios.get('https://recipe-rise-final-api-full.onrender.com/profile', { withCredentials: true })
       .then(response => {
         setUserInfo(response.data);
       })
@@ -26,7 +26,7 @@ const ProfileCard = () => {
 
 
   const handleNameChange = () => {
-    fetch('http://localhost:4000/user/profile', {
+    fetch('https://recipe-rise-final-api-full.onrender.com/user/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const ProfileCard = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:4000/user/profile', {
+    fetch('https://recipe-rise-final-api-full.onrender.com/user/profile', {
       credentials: 'include',
     })
       .then((response) => response.json())
@@ -104,7 +104,7 @@ const ProfileCard = () => {
                   </div>
 
                   <div className="group mt-2 relative md:hidden lg:hidden flex items-center gap-6">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <span className="flex select-none items-center pl-3 text-text sm:text-sm">RecipeRise.com/ </span>
                       <input
                         type="text"
@@ -118,12 +118,12 @@ const ProfileCard = () => {
                       />
                     </div>
                     <div className="cursor-pointer absolute inset-y-0 right-0 flex items-center px-2.5">
-                    <button
-                      type="submit"
-                      className="rounded-md bg-white px-2.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                    >
-                      Update
-                    </button>
+                      <button
+                        type="submit"
+                        className="rounded-md bg-white px-2.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      >
+                        Update
+                      </button>
                     </div>
                   </div>
                 </form>

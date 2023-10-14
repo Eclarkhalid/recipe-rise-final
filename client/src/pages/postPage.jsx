@@ -19,7 +19,7 @@ export default function PostPage({ updatedAt }) {
   const updatedName = searchParams.get("updatedName");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
       .then(response => {
         if (response.ok) {
           response.json().then(postInfo => {
@@ -31,7 +31,7 @@ export default function PostPage({ updatedAt }) {
         }
       });
 
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
       .then(response => {
         if (response.ok) {
           response.json().then(postInfo => {
@@ -75,7 +75,7 @@ export default function PostPage({ updatedAt }) {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/post/${postInfo._id}`, {
+      const response = await fetch(`https://recipe-rise-final-api-full.onrender.com/post/${postInfo._id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -97,7 +97,7 @@ export default function PostPage({ updatedAt }) {
     <div>
       <section className="single p-5 container min-h-screen mx-auto">
         <div className="app">
-        <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>{postInfo.title}</h1>
+          <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>{postInfo.title}</h1>
           <div className="lg:flex justify-around">
             <div className="content w-full lg:w-2/3 p-3">
               <img
@@ -147,9 +147,9 @@ export default function PostPage({ updatedAt }) {
 
 
               <hr className='my-2' />
-              
+
               <p className=" font-semibold my-4">
-              {postInfo.summary}
+                {postInfo.summary}
               </p>
               <p className='leading-8 text-justify font-medium' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 

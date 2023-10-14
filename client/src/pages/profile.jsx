@@ -23,7 +23,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/profile', { withCredentials: true })
+      .get('https://recipe-rise-final-api-full.onrender.com/profile', { withCredentials: true })
       .then(response => {
         setUserInfo(response.data);
       })
@@ -33,7 +33,7 @@ const Profile = () => {
   }, []);
 
   const handleNameChange = () => {
-    fetch('http://localhost:4000/user/profile', {
+    fetch('https://recipe-rise-final-api-full.onrender.com/user/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:4000/user/profile', {
+    fetch('https://recipe-rise-final-api-full.onrender.com/user/profile', {
       credentials: 'include',
     })
       .then(response => response.json())

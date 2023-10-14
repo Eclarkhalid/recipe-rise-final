@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const { v2: cloudinary } = require('cloudinary');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const config = require('config')
 
 // Configure Cloudinary
 cloudinary.config({
@@ -31,13 +32,13 @@ const uploadMiddleware = multer({ storage });
 const fsPromises = require('fs').promises; // Import fs.promises
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+const secret = config.get('secretKEY');
 
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+app.use(cors({ credentials: true, origin: 'https://recipe-rise-final.vercel.app' }));
 
 const corsOptions = {
   credentials: true,
-  origin: 'http://localhost:5173',
+  origin: 'https://recipe-rise-final.vercel.app',
 };
 
 app.options('*', cors(corsOptions));
@@ -55,7 +56,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://eclarkhalid:machipo@cluster0.9mhktvd.mongodb.net/?retryWrites=true&w=majority');
+const dbURI = config.get('mongodbURI');
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
 // Rest of your code...
 
