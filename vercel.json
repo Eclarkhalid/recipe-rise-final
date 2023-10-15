@@ -2,13 +2,8 @@
   "buildCommand": "cd client && npm install && ./node_modules/vite/bin/vite.js build",
   "outputDirectory": "client/dist",
   "framework": "vite",
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "http://localhost:4000/$1" },
-    { "source": "/(.*)", "destination": "/client/dist/$1" },
-    {
-      "source": "/(.*)",
-      "destination": "http://localhost:4000/$1",
-      "headers": { "Access-Control-Allow-Origin": "*" }
-    }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "http://localhost:4000/$1", "methods": ["GET", "POST", "PUT", "DELETE"] },
+    { "src": "/(.*)", "dest": "/client/dist/$1" }
   ]
 }
