@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://recipe-rise-final-api-full.onrender.com/profile', {
+    fetch('http://localhost:4000/profile', {
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {

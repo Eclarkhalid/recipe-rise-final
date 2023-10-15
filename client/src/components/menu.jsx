@@ -9,7 +9,7 @@ const Menu = () => {
 
   useEffect(() => {
     // Fetch posts from the server
-    fetch('https://recipe-rise-final-api-full.onrender.com/post')
+    fetch('http://localhost:4000/post')
       .then(response => response.json())
       .then(posts => {
         setPosts(posts);

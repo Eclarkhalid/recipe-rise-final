@@ -35,7 +35,7 @@ export default function PostPage() {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`https://recipe-rise-final-api-full.onrender.com/post?page=${pageNumber}&limit=8`)
+    fetch(`http://localhost:4000/post?page=${pageNumber}&limit=8`)
       .then((response) => response.json())
       .then((data) => {
         // Filter out duplicate posts based on ID
