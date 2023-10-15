@@ -10,13 +10,13 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const { v2: cloudinary } = require('cloudinary');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const config = require('config')
+const config = require('config');
 
 // Configure Cloudinary
 cloudinary.config({
   cloud_name: 'recipe-rise',
   api_key: '887651317989421',
-  api_secret: 'jDEuiOVC7eclQ5rmfA8LmEc4zwo'
+  api_secret: 'jDEuiOVC7eclQ5rmfA8LmEc4zwo',
 });
 
 const storage = new CloudinaryStorage({
@@ -34,15 +34,14 @@ const fsPromises = require('fs').promises; // Import fs.promises
 const salt = bcrypt.genSaltSync(10);
 const secret = config.get('secretKEY');
 
-app.use(cors({ credentials: true, origin: 'https://recipe-rise-final.vercel.app' }));
+app.use(cors({ credentials: true, origin: 'https://recipe-rise-final.vercel.app/' }));
 
 const corsOptions = {
   credentials: true,
-  origin: 'https://recipe-rise-final.vercel.app',
+  origin: 'https://recipe-rise-final.vercel.app/',
 };
 
 app.options('*', cors(corsOptions));
-
 
 app.use((err, req, res, next) => {
   if (err.name === 'CorsError') {
@@ -57,46 +56,61 @@ app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 const dbURI = config.get('mongodbURI');
-mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
 
-// Rest of your code...
-
-
-app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+// Middleware to handle MongoDB connection
+app.use(async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(dbURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+    }
+    next();
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    res.status(500).json({ message: 'MongoDB connection error' });
+  }
+});
+
+// POST register
+app.post('/register', async (req, res) => {
+  try {
+    const { username, password } = req.body;
     const userDoc = await User.create({
       username,
       password: bcrypt.hashSync(password, salt),
     });
     res.json(userDoc);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(400).json(e);
   }
 });
 
+// POST login
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  const userDoc = await User.findOne({ username });
-  const passOk = bcrypt.compareSync(password, userDoc.password);
-  if (passOk) {
-    // logged in
-    jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
-      if (err) throw err;
-      res.cookie('token', token).json({
-        id: userDoc._id,
-        username,
+  try {
+    const { username, password } = req.body;
+    const userDoc = await User.findOne({ username });
+    const passOk = bcrypt.compareSync(password, userDoc.password);
+
+    if (passOk) {
+      jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
+        if (err) throw err;
+        res.cookie('token', token).json({
+          id: userDoc._id,
+          username,
+        });
       });
-    });
-  } else {
-    res.status(400).json('wrong credentials');
+    } else {
+      res.status(400).json('wrong credentials');
+    }
+  } catch (e) {
+    console.error('Error logging in user:', e);
+    res.status(400).json(e);
   }
 });
-
 
 // GET user profile using provided token
 app.get('/profile', async (req, res) => {
@@ -104,24 +118,18 @@ app.get('/profile', async (req, res) => {
 
   try {
     const info = jwt.verify(token, secret);
-    // Continue processing with 'info'
-
-    // Example: Fetch user data from the database
     const user = await User.findById(info.id);
 
-    // Log successful profile retrieval
     console.log(`Profile accessed for user: ${user.username}`);
 
     res.json(info);
   } catch (err) {
     console.error('Error:', err);
 
-    // Handle token verification errors and unauthorized access
     if (err.name === 'JsonWebTokenError') {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    // Handle other errors
     res.status(500).json({ message: 'An error occurred' });
   }
 });
@@ -357,7 +365,13 @@ app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
   res.json(postDoc);
-})
+});
+
+// Middleware to close MongoDB connection after processing the request
+app.use((req, res, next) => {
+  mongoose.connection.close();
+  next();
+});
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

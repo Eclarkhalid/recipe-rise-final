@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Post from "../components/post";
 
 export default function PostPage() {
@@ -8,19 +8,51 @@ export default function PostPage() {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState("");
+  const [hasMore, setHasMore] = useState(true);
+  const [pageNumber, setPageNumber] = useState(1);
+  const uniquePostIds = useRef(new Set());
+
+  const observer = useRef();
+
+  const lastPostRef = (node) => {
+    if (loading) return;
+
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPageNumber((prevPageNumber) => prevPageNumber + 1);
+      }
+    });
+
+    if (node) {
+      observer.current.observe(node);
+    }
+  };
 
   useEffect(() => {
-    fetch("https://recipe-rise-final-api-full.onrender.com/post")
+    setLoading(true);
+
+    fetch(`https://recipe-rise-final-api-full.onrender.com/post?page=${pageNumber}&limit=8`)
       .then((response) => response.json())
       .then((data) => {
-        setPosts(data);
+        // Filter out duplicate posts based on ID
+        const newPosts = data.filter((post) => !uniquePostIds.current.has(post.id));
+
+        setPosts((prevPosts) => [...prevPosts, ...newPosts]);
         setLoading(false);
+        setHasMore(newPosts.length > 0);
+
+        // Add new post IDs to the set
+        newPosts.forEach((post) => uniquePostIds.current.add(post.id));
       })
       .catch((error) => {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [pageNumber]);
 
   useEffect(() => {
     // Apply search and author filter here
@@ -47,9 +79,6 @@ export default function PostPage() {
     return acc;
   }, {});
 
-
-
-
   return (
     <div className="">
       <div className="flex flex-col md:flex-row justify-between items-center mb-4">
@@ -75,7 +104,7 @@ export default function PostPage() {
       </div>
       <hr className="my-2" />
 
-      {loading ? (
+      {loading && !filteredPosts.length ? (
         <p className="text-center">Loading posts &#x1F604; ...</p>
       ) : error ? (
         <p className="text-center text-red-500">Error fetching posts. Please try again later.</p>
@@ -83,8 +112,10 @@ export default function PostPage() {
         <p className="text-center">No matching posts available.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 mx-auto">
-          {filteredPosts.map((post) => (
-            <Post key={post.id} {...post} />
+          {filteredPosts.map((post, index) => (
+            <div key={post.id} ref={index === filteredPosts.length - 1 ? lastPostRef : null}>
+              <Post {...post} />
+            </div>
           ))}
         </div>
       )}

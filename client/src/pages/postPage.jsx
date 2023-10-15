@@ -97,9 +97,9 @@ export default function PostPage({ updatedAt }) {
     <div>
       <section className="single p-5 container min-h-screen mx-auto">
         <div className="app">
-          <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>{postInfo.title}</h1>
+          <h1 className='font-bold max-sm:max-w-lg my-4 text-text text-3xl'>{postInfo.title}</h1>
           <div className="lg:flex justify-around">
-            <div className="content w-full lg:w-2/3 p-3">
+            <div className="content w-full lg:w-2/3">
               <img
                 src={postInfo.cover}
                 alt="post-image"

@@ -23,7 +23,7 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
   };
 
   return <>
-    <div className="flex flex-col bg-white rounded-lg shadow-md p-4 mb-4">
+    <div className="flex flex-col bg-white rounded-lg shadow-lg p-4 mb-4 max-md:items-center max-md:justify-center max-md:bg-background">
       <Link to={`/home/${_id}`} className="flex-shrink-0">
         <img src={cover} alt="" className="w-[400px] object-cover h-48 rounded-t-lg" />
       </Link>
@@ -41,7 +41,7 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
             </span>
           </p>
           <Link to={`/home/${_id}`} className="block">
-            <h2 className="text-xl font-medium text-text">{title}</h2>
+            <h2 className="text-xl font-medium text-text truncate">{title}</h2>
           </Link>
 
           {/* <p className="max-w-lg my-4 leading-7">

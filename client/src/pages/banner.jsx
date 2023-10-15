@@ -5,7 +5,7 @@ import Menu from '../components/menu'
 
 const banner = () => {
   return <>
-    <section className="single min-h-screen mx-auto container">
+    <section className="single min-h-screen mx-auto container px-4">
       <div className="app">
         <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>Roasted Vegetable Quinoa Salad</h1>
         <div className="lg:flex justify-around">
