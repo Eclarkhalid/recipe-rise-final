@@ -3,7 +3,19 @@
   "outputDirectory": "client/dist",
   "framework": "vite",
   "routes": [
-    { "src": "/api/(.*)", "dest": "http://localhost:4000/$1", "methods": ["GET", "POST", "PUT", "DELETE"] },
-    { "src": "/(.*)", "dest": "/client/dist/$1" }
+    {
+      "src": "/api/(.*)",
+      "dest": "https://recipe-rise-final-api-full.onrender.com/$1",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/dist/$1"
+    }
   ]
 }

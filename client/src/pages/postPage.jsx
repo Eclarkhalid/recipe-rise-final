@@ -19,7 +19,7 @@ export default function PostPage({ updatedAt }) {
   const updatedName = searchParams.get("updatedName");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
       .then(response => {
         if (response.ok) {
           response.json().then(postInfo => {
@@ -31,7 +31,7 @@ export default function PostPage({ updatedAt }) {
         }
       });
 
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
       .then(response => {
         if (response.ok) {
           response.json().then(postInfo => {
@@ -75,7 +75,7 @@ export default function PostPage({ updatedAt }) {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/post/${postInfo._id}`, {
+      const response = await fetch(`https://recipe-rise-final-api-full.onrender.com/post/${postInfo._id}`, {
         method: "DELETE",
         credentials: "include",
       });

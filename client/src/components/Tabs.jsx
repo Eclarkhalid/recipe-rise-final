@@ -6,7 +6,7 @@ const Tabs = () => {
 
   async function logout() {
     try {
-      await fetch('http://localhost:4000/logout', {
+      await fetch('https://recipe-rise-final-api-full.onrender.com/logout', {
         credentials: 'include',
         method: 'POST',
       });
