@@ -3,8 +3,7 @@
   "outputDirectory": "client/dist",
   "framework": "vite",
   "rewrites": [
-    {
-      "destination" : "http://localhost:4000/index.js"
-    }
+    { "source": "/api/(.*)", "destination": "http://localhost:4000/$1" },
+    { "source": "/(.*)", "destination": "/client/dist/$1" }
   ]
 }
