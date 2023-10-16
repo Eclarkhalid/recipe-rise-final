@@ -4,6 +4,9 @@ import { UserContext } from '../userContext';
 import { VscAccount } from 'react-icons/vsc'
 
 const Header = () => {
+  const handleLinkClick = () => {
+    alert('Authentication is still in progress');
+  };
 
   const { setUserInfo, userInfo } = useContext(UserContext);
 
@@ -147,7 +150,11 @@ const Header = () => {
             <>
 
               <div className="uppercase space-x-4 right-0">
-                <Link className={`"text-slate-900 hover:text-slate-700`} to={'register'}>
+                <Link
+                  className={`text-slate-900 hover:text-slate-700`}
+                  to={'register'}
+                  onClick={handleLinkClick}
+                >
                   Sign In/ Sign Up
                 </Link>
               </div>

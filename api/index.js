@@ -34,11 +34,11 @@ const fsPromises = require('fs').promises; // Import fs.promises
 const salt = bcrypt.genSaltSync(10);
 const secret = config.get('secretKEY');
 
-app.use(cors({ credentials: true, origin: 'https://recipe-rise-final-client.vercel.app' }));
+app.use(cors({ credentials: true, origin: 'https://recipe-rise-final-j5bs.vercel.app' }));
 
 const corsOptions = {
   credentials: true,
-  origin: 'https://recipe-rise-final-client.vercel.app',
+  origin: 'https://recipe-rise-final-j5bs.vercel.app',
 };
 
 app.options('*', cors(corsOptions));
