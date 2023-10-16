@@ -15,7 +15,7 @@ const Register = () => {
 
     if (response.status === 200) {
       alert('Registration successful. Proceed to login to access the application.');
-      window.location.href = '/login';
+      window.location.href = '/home';
     } else {
       alert('Registration failed.');
     }
