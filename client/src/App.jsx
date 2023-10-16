@@ -47,7 +47,7 @@ const App = () => {
             </div>
 
             <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
-              <p className='text-lg font-bold font-palanquin text-accent'>An account will be needed to be able to upload recipes </p>
+              <p className='text-lg font-bold font-palanquin text-red-600'>An account will be needed to be able to upload recipes </p>
             </div>
           </div>
 

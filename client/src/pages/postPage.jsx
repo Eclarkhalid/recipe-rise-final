@@ -97,7 +97,7 @@ export default function PostPage({ updatedAt }) {
     <div>
       <section className="single p-5 container min-h-screen mx-auto">
         <div className="app">
-          <h1 className='font-bold max-sm:max-w-lg my-4 text-text text-3xl'>{postInfo.title}</h1>
+          <h1 className='font-bold max-sm:max-w-lg my-4 text-text text-3xl max-sm:text-4xl'>{postInfo.title}</h1>
           <div className="lg:flex justify-around">
             <div className="content w-full lg:w-2/3">
               <img
@@ -148,10 +148,10 @@ export default function PostPage({ updatedAt }) {
 
               <hr className='my-2' />
 
-              <p className=" font-semibold my-4">
+              <p className=" font-semibold my-4 max-sm:text-3xl">
                 {postInfo.summary}
               </p>
-              <p className='leading-8 text-justify font-medium' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+              <p className='leading-8 text-justify font-medium max-sm:text-2xl' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 
               <hr className="my-2" />
               <div className="bg-slate-200 py-6 px-2">
