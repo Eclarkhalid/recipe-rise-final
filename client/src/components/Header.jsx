@@ -5,7 +5,7 @@ import { VscAccount } from 'react-icons/vsc'
 
 const Header = () => {
   const handleLinkClick = () => {
-    alert('Authentication is still in progress');
+    alert('Authentication is still in progress. When You register, an account will be created but you wont be able to login. Please try again Later');
   };
 
   const { setUserInfo, userInfo } = useContext(UserContext);
