@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link, Navigate, useLocation } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../userContext";
-import user from '../images/user.jpg'
-import Menu from '../components/menu'
+import user from '../images/user.jpg';
+import Menu from '../components/menu';
 
 export default function PostPage({ updatedAt }) {
   const [postInfo, setPostInfo] = useState(null);
@@ -11,59 +11,38 @@ export default function PostPage({ updatedAt }) {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [isEdited, setIsEdited] = useState(false);
-
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const updatedName = searchParams.get("updatedName");
 
   useEffect(() => {
-    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
-      .then(response => {
+    const fetchPostInfo = async () => {
+      try {
+        const response = await fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`);
         if (response.ok) {
-          response.json().then(postInfo => {
-            setPostInfo(postInfo);
-          });
+          const postInfo = await response.json();
+          setPostInfo(postInfo);
+
+          // Determine if the post has been edited
+          const createdAt = new Date(postInfo.createdAt);
+          const updatedAt = new Date(updatedAt);
+          setIsEdited(updatedAt > createdAt);
         } else if (response.status === 404) {
           // Handle case when post doesn't exist
           setRedirect(true);
         }
-      });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    fetch(`https://recipe-rise-final-api-full.onrender.com/post/${id}`)
-      .then(response => {
-        if (response.ok) {
-          response.json().then(postInfo => {
-            setPostInfo(postInfo);
-
-            // Determine if the post has been edited
-            const createdAt = new Date(postInfo.createdAt);
-            const updatedAt = new Date(updatedAt);
-            setIsEdited(updatedAt > createdAt);
-          });
-        } else if (response.status === 404) {
-          // Handle case when post doesn't exist
-          setRedirect(true);
-        }
-      });
-
-  }, [id]);
-
-  if (redirect) {
-    return <Navigate to="/home" />;
-  }
-
-  if (!postInfo) return null;
-
-  const createdAt = new Date(postInfo.createdAt);
-  const updatedTimestamp = new Date(updatedAt);
-
-  const formattedCreatedAt = createdAt.toLocaleString();
-  const formattedUpdatedAt = updatedTimestamp.toLocaleString();
-
-  // Determine which time to display based on isEdited state
-  const timeToDisplay = isEdited ? formattedUpdatedAt : formattedCreatedAt;
+    fetchPostInfo();
+  }, [id, updatedAt]);
 
   const openModal = () => {
     setShowModal(true);
@@ -92,6 +71,29 @@ export default function PostPage({ updatedAt }) {
 
     closeModal();
   };
+
+  if (redirect) {
+    return <Navigate to="/home" />;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
+  }
+
+  if (!postInfo) return null;
+
+  const createdAt = new Date(postInfo.createdAt);
+  const updatedTimestamp = new Date(updatedAt);
+
+  const formattedCreatedAt = createdAt.toLocaleString();
+  const formattedUpdatedAt = updatedTimestamp.toLocaleString();
+
+  // Determine which time to display based on isEdited state
+  const timeToDisplay = isEdited ? formattedUpdatedAt : formattedCreatedAt;
 
   return (
     <div>
@@ -144,7 +146,6 @@ export default function PostPage({ updatedAt }) {
                   )}
                 </div>
               </div>
-
 
               <hr className='my-2' />
 
