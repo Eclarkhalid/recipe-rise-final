@@ -7,7 +7,7 @@ const banner = () => {
   return <>
     <section className="single min-h-screen mx-auto container px-4">
       <div className="app">
-        <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl'>Roasted Vegetable Quinoa Salad</h1>
+        <h1 className='font-bold max-sm:max-w-lg my-3 text-text text-3xl max-sm:text-4xl'>Roasted Vegetable Quinoa Salad</h1>
         <div className="lg:flex justify-around">
           <div className="content w-full lg:w-2/3 mt-3">
             <img
@@ -34,7 +34,7 @@ const banner = () => {
 
             <hr className='my-2' />
 
-            <p className='leading-8 text-justify'>
+            <p className='leading-8 text-justify max-sm:text-2xl font-light'>
               Spaghetti Carbonara is a classic Italian pasta dish known for its rich, creamy sauce made with eggs, cheese, pancetta, and black pepper. It's a delicious and comforting meal that's surprisingly easy to make.
               A timeless Italian pasta dish featuring creamy sauce, crispy pancetta, and a hint of Parmesan cheese.
               <br />
